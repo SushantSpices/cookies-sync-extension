@@ -8,5 +8,6 @@ One time setup:
 
  Every time setup:
 1. Goto UAT login screen: https://uat-tenant.providhy.com/ and login to the system.
-2. After login Go to your extensions list and click on the "cookie sync extension"
-3. Now open your localhost:3000, you should be logged in the the localhost with the same credentials as in the UAT.
+2. After login Go to your extensions list and click on the "Providhy Extension"
+3. Enter the domains to transfer cookies and click on "Sync cookies".
+4. Now open your {To Domain} (eg: localhost:3000), you should be logged in the the localhost with the same credentials as in the {From Domain}.
