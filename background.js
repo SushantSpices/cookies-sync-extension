@@ -1,7 +1,7 @@
 // background.js
 
 // List the cookie names you want to sync
-const cookieNames = ["accessToken", "refreshToken"];
+const cookieNames = ["accessToken", "refreshToken", "lastInteraction"];
 
 /**
  * Read a cookie from the providhy domain.
