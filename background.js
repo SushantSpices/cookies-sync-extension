@@ -31,7 +31,7 @@ function getCookieFromProvidhy(cookieName, callback) {
 function setCookieForLocalhost(cookieName, cookieValue) {
   // Ensure the URL matches your local environment.
   chrome.cookies.set({
-    url: "http://localhost:3000", // Use "http://localhost:3000" if your local site runs on port 3000, for example.
+    url: "http://localhost:3000", // Adjust port as necessary
     name: cookieName,
     value: cookieValue,
     domain: "localhost",  // Explicitly set the domain to "localhost"
@@ -60,25 +60,7 @@ function syncCookiesToLocalhost() {
   });
 }
 
-// Trigger the synchronization when the extension is installed or updated.
-chrome.runtime.onInstalled.addListener(() => {
-  console.log("Extension installed/updated. Syncing cookies...");
-  syncCookiesToLocalhost();
-});
-
-// Listen for any changes in cookies on the providhy.com domain and re-sync as needed.
-chrome.cookies.onChanged.addListener((changeInfo) => {
-  if (
-    changeInfo.cookie &&
-    changeInfo.cookie.domain.includes("providhy.com") &&
-    cookieNames.includes(changeInfo.cookie.name)
-  ) {
-    console.log(`Cookie change detected for ${changeInfo.cookie.name} on providhy.com. Resyncing...`);
-    setCookieForLocalhost(changeInfo.cookie.name, changeInfo.cookie.value);
-  }
-});
-
-// Optional: Allow manual syncing when the user clicks on the extension icon.
+// The cookie update process will only take place when the user clicks the extension icon.
 chrome.action.onClicked.addListener(() => {
   console.log("Extension icon clicked. Syncing cookies...");
   syncCookiesToLocalhost();
